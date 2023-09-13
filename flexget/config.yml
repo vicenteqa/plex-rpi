@@ -39,7 +39,7 @@ tasks:
         - next_series_episodes:
           from_start: yes
       from:
-        - piratebay
+        - piratebay: yes
       interval: 1 hour
   sort_tv:
     priority: 2
