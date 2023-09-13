@@ -32,15 +32,15 @@ tasks:
     rss: https://eztv.ag/ezrss.xml
     template: tv
     priority: 2
-  discover-series:
-    template: tv
-    discover:
-      what:
-        - next_series_episodes:
-          from_start: yes
-      from:
-        - piratebay: yes
-      interval: 1 hour
+  # discover-series:
+  #   template: tv
+  #   discover:
+  #     what:
+  #       - next_series_episodes:
+  #         from_start: yes
+  #     from:
+  #       - piratebay: yes
+  #     interval: 1 hour
   sort_tv:
     priority: 2
     no_entries_ok: yes
