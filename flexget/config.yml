@@ -91,3 +91,11 @@ tasks:
       username: admin
       password: "123456"
       action: purge
+  discover-series:
+    template: tv
+    discover:
+      what:
+          from_start: yes
+      from:
+        - piratebay: yes
+      interval: 1 hour      
