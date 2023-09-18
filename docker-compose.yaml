@@ -2,31 +2,23 @@ version: "3.7"
 
 services:
 
-  samba:
-    image: dperson/samba # no hay tag con versiones, solo latest
-    restart: always
-    command: '-u "pi;password" -s "media;/media;yes;no" -s "downloads;/downloads;yes;no"'
-    stdin_open: true
-    tty: true
-    environment:
-      - TZ=Europe/Madrid
-    ports:
-      - 139:139
-      - 445:445
-    volumes:
-      - ${MEDIA}:/media
-      - ${STORAGE}/torrents:/downloads
-
   plex:
+    container_name: plex
     image: plexinc/pms-docker
+    restart: unless-stopped
+    network_mode: host
+    expose:
+      - 32400
+      - 33400
+    # Descomentar si NO usas network_mode: "host"
     environment:
       - TZ=Europe/Madrid
-    network_mode: host
+      - PUID=${PUID}
+      - PGID=${PGID}
     volumes:
-      - ${STORAGE}/Plex Media Server:/root/Library/Application Support/Plex Media Server
+      - ${STORAGE}:/config
       - ${MEDIA}:/media
-      - ${STORAGE}/tmp:/tmp
-    restart: unless-stopped
+      - ${STORAGE}:/transcode
 
   transmission:
     image : jaymoulin/transmission:3.00-1.6.1
