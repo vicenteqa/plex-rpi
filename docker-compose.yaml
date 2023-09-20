@@ -3,22 +3,23 @@ version: "3.7"
 services:
 
   plex:
-    container_name: plex
-    image: plexinc/pms-docker
-    restart: unless-stopped
-    network_mode: host
+    image: linuxserver/plex:latest
     expose:
       - 32400
       - 33400
-    # Descomentar si NO usas network_mode: "host"
+    ports:
+     - 32400:32400
+     - 33400:33400
     environment:
       - TZ=Europe/Madrid
       - PUID=${PUID}
       - PGID=${PGID}
+      - VERSION=docker
     volumes:
-      - ${STORAGE}:/config
+      - /Users/vicenteruiz/docker/plex:/config
       - ${MEDIA}:/media
-      - ${STORAGE}:/transcode
+      - /Users/vicenteruiz/docker/plex/transcode:/transcode
+    restart: unless-stopped
 
   transmission:
     image : jaymoulin/transmission:3.00-1.6.1
@@ -44,8 +45,8 @@ services:
     ports:
       - 5050:5050
     environment:
-      - PUID=1001
-      - PGID=1001
+      - PUID=${PUID}
+      - PGID=${PGID}
       - TORRENT_PLUGIN=transmission
-      - FG_WEBUI_PASSWD=p3l4d0_N3RD # la puedes cambiar por la que quieras
+      - FG_WEBUI_PASSWD=fl3xg3tp4ss # la puedes cambiar por la que quieras
     restart: unless-stopped

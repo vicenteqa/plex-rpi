@@ -13,3 +13,8 @@ flexget/*.sqlite
 transmission/dht.dat
 transmission/stats.json
 .vscode
+._.*
+._*
+/transmission/resume/*
+/transmission/torrents/*
+.config-lock
