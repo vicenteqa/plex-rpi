@@ -18,3 +18,4 @@ transmission/stats.json
 /transmission/resume/*
 /transmission/torrents/*
 .config-lock
+/bazarr
