@@ -1,25 +1,22 @@
 version: "3.7"
 
 services:
-
   plex:
-    image: linuxserver/plex:latest
-    expose:
-      - 32400
-      - 33400
+    container_name: plex
+    image: linuxserver/plex
     ports:
-     - 32400:32400
-     - 33400:33400
+      - 32400:32400
+    restart: always
     environment:
-      - TZ=Europe/Madrid
       - PUID=${PUID}
       - PGID=${PGID}
+      - TZ=${TZ}
       - VERSION=docker
     volumes:
-      - /Users/vicenteruiz/docker/plex:/config
+      - ${STORAGE}/plex:/config
       - ${MEDIA}:/media
-      - /Users/vicenteruiz/docker/plex/transcode:/transcode
-    restart: unless-stopped
+      - ${STORAGE}/plex/transcode:/transcode
+  
 
   transmission:
     image : jaymoulin/transmission:3.00-1.6.1
@@ -48,5 +45,5 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TORRENT_PLUGIN=transmission
-      - FG_WEBUI_PASSWD=fl3xg3tp4ss # la puedes cambiar por la que quieras
+      - FG_WEBUI_PASSWD=fl3xg3tp4ssB41l3n
     restart: unless-stopped

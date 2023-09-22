@@ -18,8 +18,8 @@ templates:
           quality: 720p
       tv:
       - Severance
-      - Painkiller
       - The White Lotus
+      - The morning show
 
     transmission:
       host: transmission
@@ -91,12 +91,3 @@ tasks:
       username: admin
       password: "123456"
       action: purge
-  discover-series:
-    template: [tv]
-    discover:
-      what:
-        - next_series_episodes:
-            from_start: yes
-      from:
-        - piratebay: yes
-      interval: 1 hour  # Search for expected episodes again every hour
